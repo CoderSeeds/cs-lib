@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'boxicons';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    font-family: 'Poppins';
+}
+
+:root{
+    --cs-input-height: 40px;
+    --cs-primary-color: #147cd1;
+    --cs-grey-color: #bcbec0;
+    --cs-danger-color: #df2e34;
+    --cs-success-color: #22c55e;
+    --cs-input-box-shadow: #bfdbfe;
+}

@@ -1,0 +1,50 @@
+<label *ngIf="label"> {{ label }}</label>
+
+<div class="cs-input" [attr.invalid]="invalid" [attr.valid]="valid">
+  <span class="cs-input__content cs-input__content--left">
+    <ng-content select="[leftContent]"></ng-content>
+  </span>
+  <input
+    type="text"
+    class="cs-input__element"
+    [disabled]="disable"
+    [type]="type"
+    (input)="onInput($event)"
+  />
+  <span class="cs-input__content cs-input__content--right">
+    <ng-content select="[rightContent]"></ng-content>
+  </span>
+</div>
+
+<ng-container *ngIf="invalid && errors.length">
+  <ng-container [ngSwitch]="errors[0]">
+    <small class="error-message" *ngSwitchCase="'required'">
+      {{ customErrors[errors[0]] || "Is required" }}
+    </small>
+    <small class="error-message" *ngSwitchCase="'email'">
+      {{ customErrors[errors[0]] || "Invalid email" }}
+    </small>
+    <small class="error-message" *ngSwitchCase="'minlength'">
+      {{
+        customErrors[errors[0]] ||
+          "Must have at least " +
+            controlErrors["minlength"].requiredLength +
+            " characters"
+      }}
+    </small>
+    <small class="error-message" *ngSwitchCase="'maxlength'">
+      {{
+        customErrors[errors[0]] ||
+          "Must have max " +
+            controlErrors["maxlength"].requiredLength +
+            " characters"
+      }}
+    </small>
+    <small class="error-message" *ngSwitchCase="'pattern'">
+      {{ customErrors[errors[0]] || "Invalid format" }}
+    </small>
+    <small class="error-message" *ngSwitchDefault>
+      {{ customErrors[errors[0]] || "Message not assigned" }}
+    </small>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,58 @@
+label{
+    margin-bottom: 10PX;
+}
+
+.cs-input{
+    height: var(--cs-input-height);
+    outline: 1px solid var(--cs-grey-color);
+    border-radius: 7px;
+    width: 100%;
+    transition: box-shadow 0.1s, outline 0.5s;
+    display: flex;
+    &__element{
+        border-radius: inherit;
+        outline: none;
+        border: none;
+        flex-grow: 1;
+    }
+    &:has(.cs-input__element):hover{
+        outline-color: var(--cs-primary-color);
+    }
+    &:focus-within{
+        outline-color: var(--cs-primary-color);
+        box-shadow: 0 0 0 0.3rem var(--cs-input-box-shadow);
+    }
+    &__content{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.cs-input[invalid="true"]{
+    outline-color: var(--cs-danger-color);
+    &:has(.cs-input__element):hover{
+        outline-color: var(--cs-danger-color);
+    }
+    &:focus-within{
+        outline-color: var(--cs-danger-color);
+        box-shadow: none
+    }
+}
+
+.cs-input[valid="true"]{
+    outline-color: var(--cs-success-color);
+    &:has(.cs-input__element):hover{
+        outline-color: var(--cs-success-color);
+    }
+    &:focus-within{
+        outline-color: var(--cs-success-color);
+        box-shadow: none
+    }
+}
+
+.error-message{
+    color: var(--cs-danger-color);
+    font-size: 12px;
+}
