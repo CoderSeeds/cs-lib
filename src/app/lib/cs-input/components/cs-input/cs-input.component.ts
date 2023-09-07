@@ -29,6 +29,11 @@ export class CsInputComponent implements ControlValueAccessor, OnInit {
 
   @Input() customErrors:any = {}
 
+  @Input() labelDesign: '' | 'floating' | 'fixed' = ''
+
+  @Input() inputDesign: '' | 'material'| 'material-outline' = ''
+
+
   controlErrors:any = {}
 
   errors: string[] = []

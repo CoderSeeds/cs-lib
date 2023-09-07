@@ -7,6 +7,8 @@
           label="Email"
           formControlName="email"
           [customErrors]="{ required: 'Email is required' }"
+          labelDesign="floating"
+          inputDesign="material"
         ></cs-input>
       </div>
       <div class="login__input">
@@ -15,6 +17,8 @@
           label="Password"
           formControlName="password"
           type="password"
+          labelDesign="fixed"
+          inputDesign="material-outline"
         >
           <i *ngIf="inputPassword.valid" rightContent class="bx bx-check"></i>
         </cs-input>

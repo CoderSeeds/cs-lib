@@ -1,5 +1,19 @@
-label{
-    margin-bottom: 10PX;
+.label{
+    margin-bottom: 10px;
+    &--fixed{
+        transform: translate(7px, -52px);
+        position: absolute;
+        margin-bottom: 0;
+        background-color: var(--cs-background-color);
+        font-size: 14px;
+        transition: color 0.1s;
+    }
+    &--floating{
+        transform: translate(15px, -33px);
+        position: absolute;
+        margin-bottom: 0;
+        transition: transform 0.1s, color 0.3s, font-size 0.1s;
+    }
 }
 
 .cs-input{
@@ -21,12 +35,98 @@ label{
     &:focus-within{
         outline-color: var(--cs-primary-color);
         box-shadow: 0 0 0 0.3rem var(--cs-input-box-shadow);
+        & + .label--floating{
+            transform: translateY(-67px);
+            color: var(--cs-primary-color);
+            font-size: 14px;
+        }
+        & + .label--fixed{
+            color: var(--cs-primary-color);
+        }
     }
     &__content{
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    &--material{
+        outline: none;
+        height: calc(var(--cs-input-height) + 20px);
+        padding-left: 10px;
+        background-color: whitesmoke;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        .cs-input__element{
+            background-color: inherit;
+            margin-top: 10px;
+        }
+
+        & + .label--fixed{
+            background-color: transparent;
+            transform: translate(10px, -57px);
+        }
+
+        & + .label--floating{
+            background-color: transparent;
+            transform: translate(15px, -40px);
+        }
+
+        &:focus-within{
+            box-shadow: none;
+            & + .label--floating{
+                background-color: transparent;
+                transform: translate(10px, -57px);
+            }
+            & ~ .cs-input-bar{
+                .cs-input-bar__highlight{
+                    transform: scale(1);
+                }
+            }
+        }
+   
+    }
+    &--material-outline{
+        padding-left: 10px;
+        outline-width: 2px;
+        & + .label--floating{
+            background-color: var(--cs-background-color);
+        }
+        & + .label--fixed{
+            transform: translate(10px, -53px);
+        }
+        &:focus-within{
+            box-shadow: none;
+            & + .label--floating{
+                transform: translate(10px, -53px);
+            }
+        }
+    }
+}
+
+.cs-input[filled="true"]{
+    & + .label--floating{
+        transform: translateY(-67px);
+        font-size: 14px;
+    }
+}
+
+.cs-input--material[filled="true"]{
+    & + .label--floating{
+        transform: translate(10px, -57px);
+    }
+}
+
+.cs-input-bar{
+    height: 2px;
+    background-color: var(--cs-grey-color);
+    width: 100%;
+    &__highlight{
+        background-color: var(--cs-primary-color);
+        transform: scale(0);
+        height: 2px;
+        transition: transform ease-in 0.3s;
+        width: 100%;
     }
 }
 
@@ -39,6 +139,15 @@ label{
         outline-color: var(--cs-danger-color);
         box-shadow: none
     }
+
+    & + .label--fixed, & + .label--floating{
+        color: var(--cs-danger-color);
+    }
+    & ~ .cs-input-bar{
+        .cs-input-bar__highlight{
+            background-color: var(--cs-danger-color);
+        }
+    }
 }
 
 .cs-input[valid="true"]{
@@ -49,6 +158,14 @@ label{
     &:focus-within{
         outline-color: var(--cs-success-color);
         box-shadow: none
+    }
+    & + .label--fixed, & + .label--floating{
+        color: var(--cs-success-color);
+    }
+    & ~ .cs-input-bar{
+        .cs-input-bar__highlight{
+            background-color: var(--cs-success-color);
+        }
     }
 }
 
